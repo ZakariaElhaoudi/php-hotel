@@ -7,15 +7,30 @@
     <title>Document</title>
 </head>
 <body>
+<!-- Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio -->
+    <div class="container">
+        <form action="">
+            <label for="search">Search:</label>
+            <input type="text" name="search">
+            <!-- <input type="number" name="vote"> -->
+            <button type="submit" class="btn btn-primary">Filtra</button>
+        </form>
+
+
+    </div>
+
+
+
+
     <div class="container">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrizione</th>
-                        <th scope="col">Parcheggio</th>
-                        <th scope="col">Voto</th>
-                        <th scope="col">Distanza dal centro</th>
+                        <th class="col">Nome</th>
+                        <th class="col">Descrizione</th>
+                        <th class="col">Parcheggio</th>
+                        <th class="col">Voto</th>
+                        <th class="col">Distanza dal centro</th>
                     </tr>
                 </thead>
                 
@@ -67,15 +82,38 @@
                         ];
 
 
-                        foreach ($hotels as $hotel) {
-                            echo  "<tr>" ;
-                            echo  "<td>" . $hotel['name'] . "</td>";
-                            echo  "<td>" .  $hotel['description'] . "</td>";
-                            echo  "<td>" . $hotel['parking'] . "</td>";
-                            echo  "<td>" .  $hotel['vote'] . "</td>";
-                            echo  "<td>" . $hotel['distance_to_center'] . "</td>";
-                            echo  "</tr>";
-
+                        // var_dump($_GET)
+                        
+                        if ($_GET == [] || $_GET["search"] == "") {
+                            
+                            foreach ($hotels as $hotel) {
+                                echo  "<tr>" ;
+                                echo  "<td>" . $hotel['name'] . "</td>";
+                                echo  "<td>" .  $hotel['description'] . "</td>";
+                                echo  "<td>" . $hotel['parking'] . "</td>";
+                                echo  "<td>" .  $hotel['vote'] . "</td>";
+                                echo  "<td>" . $hotel['distance_to_center'] . "</td>";
+                                echo  "</tr>";
+    
+                            }
+                            
+                        } else {
+                            
+                           
+                            foreach ($hotels as $hotel) {
+                                
+                                if ($_GET['search'] == 'true' && $hotel['parking']) {
+                        
+                                    echo  "<tr>" ;  
+                                    echo  "<td>" . $hotel['name'] . "</td>";
+                                    echo  "<td>" .  $hotel['description'] . "</td>";
+                                    echo  "<td>" . $hotel['parking'] . "</td>";
+                                    echo  "<td>" .  $hotel['vote'] . "</td>";
+                                    echo  "<td>" . $hotel['distance_to_center'] . "</td>";
+                                    echo  "</tr>";
+                                } 
+                            }
+                            
                         }
                     ?>
                     
