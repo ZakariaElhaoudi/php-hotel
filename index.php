@@ -12,7 +12,7 @@
         <form action="">
             <label for="search">Search:</label>
             <input type="text" name="search">
-            <!-- <input type="number" name="vote"> -->
+            <input type="number" name="vote">
             <button type="submit" class="btn btn-primary">Filtra</button>
         </form>
 
@@ -102,7 +102,7 @@
                            
                             foreach ($hotels as $hotel) {
                                 
-                                if ($_GET['search'] == 'true' && $hotel['parking']) {
+                                if ($_GET['search'] == 'true' && $hotel['parking'] || $hotel['vote'] <= intval($_GET['vote'])) {
                         
                                     echo  "<tr>" ;  
                                     echo  "<td>" . $hotel['name'] . "</td>";
